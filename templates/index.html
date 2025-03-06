@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictation App</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        textarea { width: 80%; height: 100px; margin-top: 20px; }
+        #output { margin-top: 20px; font-size: 18px; }
+        button { margin-top: 10px; padding: 10px; font-size: 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Dictation Practice</h1>
+
+    <audio controls>
+        <source src="https://dl.dropboxusercontent.com/scl/fi/iqxynt0jzakahvb2go826/Dict-e-B1-_-la-conqu-te-de-l-espace-online-audio-converter.com.mp3?rlkey=e261uq68yv1f5qlq5c1odypi9&st=gbcz0sez" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <br>
+    <textarea id="userInput" placeholder="Type what you hear..."></textarea>
+    <br>
+    <button onclick="checkText()">Corriger</button>
+
+    <div id="output"></div>
+
+    <script>
+        function checkText() {
+            let text = document.getElementById("userInput").value;
+            
+            fetch('/check', {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text: text })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("output").innerHTML = "Correction: " + data.corrected;
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+    
+</body>
+</html>
