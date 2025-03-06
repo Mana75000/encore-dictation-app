@@ -1,7 +1,11 @@
 from flask import Flask, render_template, request, jsonify
 import difflib
 
+<<<<<<< HEAD
 app = Flask(__name__, template_folder="templates")
+=======
+app = Flask(__name__)  # No need to specify template_folder, it's default
+>>>>>>> 5b08e65 (Add all necessary files (app.py, requirements.txt, templates, LICENSE.txt))
 
 # The correct dictation text (you can modify this)
 CORRECT_TEXT = "La conquête de l'espace est un rêve ancien de l'humanité."
@@ -35,4 +39,4 @@ def highlight_differences(user_input, correct_text):
     return " ".join(result)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=5000)
