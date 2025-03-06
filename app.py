@@ -1,11 +1,8 @@
 from flask import Flask, render_template, request, jsonify
 import difflib
 
-<<<<<<< HEAD
+# The correct way to initialize Flask
 app = Flask(__name__, template_folder="templates")
-=======
-app = Flask(__name__)  # No need to specify template_folder, it's default
->>>>>>> 5b08e65 (Add all necessary files (app.py, requirements.txt, templates, LICENSE.txt))
 
 # The correct dictation text (you can modify this)
 CORRECT_TEXT = "La conquête de l'espace est un rêve ancien de l'humanité."
